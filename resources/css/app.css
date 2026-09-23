@@ -1,0 +1,853 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================
+   CineList - Estilos gerais
+   ========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f5f5;
+    color: #222;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+textarea {
+    font: inherit;
+}
+
+/* =========================
+   Layout
+   ========================= */
+
+.app-shell {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 240px;
+    min-height: 100vh;
+    background: #171717;
+    color: #fff;
+    padding: 28px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-shrink: 0;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.sidebar nav a {
+    display: block;
+    padding: 11px 13px;
+    border-radius: 8px;
+    color: #ccc;
+    transition: 0.2s;
+}
+
+.sidebar nav a:hover {
+    background: #292929;
+    color: #fff;
+}
+
+.sidebar nav a.active {
+    background: #fff;
+    color: #171717;
+    font-weight: 600;
+}
+
+.main {
+    flex: 1;
+    min-width: 0;
+    padding: 40px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* =========================
+   Textos
+   ========================= */
+
+.muted {
+    color: #777;
+}
+
+h1,
+h2,
+h3 {
+    color: #171717;
+}
+
+/* =========================
+   Cards
+   ========================= */
+
+.card {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* =========================
+   Botões
+   ========================= */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.btn-primary {
+    background: #171717;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: #333;
+}
+
+.btn-outline {
+    background: transparent;
+    color: #171717;
+    border-color: #d5d5d5;
+}
+
+.btn-outline:hover {
+    background: #f0f0f0;
+}
+
+.btn-sm {
+    padding: 7px 12px;
+    font-size: 13px;
+}
+
+/* =========================
+   Formulários
+   ========================= */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.form-control {
+    width: 100%;
+    padding: 11px 13px;
+    border: 1px solid #d7d7d7;
+    border-radius: 8px;
+    background: #fff;
+    color: #222;
+    outline: none;
+    transition: 0.2s;
+}
+
+.form-control:focus {
+    border-color: #555;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.06);
+}
+
+textarea.form-control {
+    resize: vertical;
+}
+
+/* =========================
+   Gêneros / Tags
+   ========================= */
+
+.genre-picker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 999px;
+    background: #fff;
+    color: #555;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.badge input {
+    display: none;
+}
+
+.badge:hover {
+    background: #f2f2f2;
+}
+
+.badge.badge-on {
+    background: #171717;
+    color: #fff;
+    border-color: #171717;
+}
+
+/* =========================
+   Mensagens
+   ========================= */
+
+.flash {
+    padding: 13px 16px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.flash-success {
+    background: #e9f7ef;
+    color: #176b3a;
+    border: 1px solid #bfe8cf;
+}
+
+.flash-error {
+    background: #fff0f0;
+    color: #a52a2a;
+    border: 1px solid #f0c4c4;
+}
+
+.field-error {
+    color: #b42318;
+    font-size: 13px;
+    margin-top: 6px;
+}
+
+/* =========================
+   Responsividade
+   ========================= */
+
+@media (max-width: 768px) {
+    .app-shell {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        min-height: auto;
+        padding: 18px;
+    }
+
+    .sidebar nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .main {
+        padding: 24px 16px;
+    }
+}
+
+.site-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #171717;
+}
+
+.brand-icon {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.brand strong {
+    font-family: Georgia, serif;
+    font-size: 24px;
+}
+/* =====================================================
+   CINEList - DASHBOARD / TABELA
+   ===================================================== */
+
+.dashboard {
+    width: 100%;
+}
+
+/* ---------- Cabeçalho ---------- */
+
+.dashboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.dashboard-header h1 {
+    margin: 6px 0 6px;
+    font-size: 32px;
+    line-height: 1.2;
+    letter-spacing: -0.8px;
+}
+
+.dashboard-header p {
+    margin: 0;
+}
+
+.page-eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    color: #888;
+}
+
+/* ---------- Botão ---------- */
+
+.btn-icon {
+    font-size: 20px;
+    line-height: 1;
+    margin-right: 6px;
+}
+
+/* ---------- Estatísticas ---------- */
+
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #e7e7e7;
+    border-radius: 14px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.035);
+}
+
+.stat-icon {
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f3f3f3;
+    border-radius: 12px;
+    font-size: 21px;
+}
+
+.stat-label {
+    display: block;
+    color: #858585;
+    font-size: 12px;
+    margin-bottom: 3px;
+}
+
+.stat-value {
+    display: block;
+    color: #171717;
+    font-size: 25px;
+    line-height: 1;
+}
+
+/* =====================================================
+   CARD DA TABELA
+   ===================================================== */
+
+.movies-card {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.035);
+}
+
+/* ---------- Barra superior ---------- */
+
+.movies-toolbar {
+    min-height: 76px;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    border-bottom: 1px solid #ededed;
+}
+
+.movies-toolbar h2 {
+    margin: 0 0 3px;
+    font-size: 17px;
+    letter-spacing: -0.2px;
+}
+
+.movies-count {
+    color: #999;
+    font-size: 12px;
+}
+
+/* ---------- Busca ---------- */
+
+.search-box {
+    width: 330px;
+    position: relative;
+}
+
+.search-box input {
+    width: 100%;
+    height: 40px;
+    padding: 0 14px 0 38px;
+
+    border: 1px solid #dedede;
+    border-radius: 9px;
+
+    background: #fafafa;
+    color: #222;
+
+    outline: none;
+    transition: 0.2s;
+}
+
+.search-box input::placeholder {
+    color: #a1a1a1;
+}
+
+.search-box input:focus {
+    background: #fff;
+    border-color: #999;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.045);
+}
+
+.search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-53%);
+
+    color: #888;
+    font-size: 20px;
+    pointer-events: none;
+}
+
+/* =====================================================
+   TABELA
+   ===================================================== */
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.movies-table {
+    width: 100%;
+    min-width: 900px;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* ---------- Cabeçalho ---------- */
+
+.movies-table thead {
+    background: #fafafa;
+}
+
+.movies-table th {
+    padding: 13px 20px;
+
+    text-align: left;
+
+    color: #888;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+
+    border-bottom: 1px solid #e8e8e8;
+    white-space: nowrap;
+}
+
+.movies-table th:first-child {
+    padding-left: 22px;
+}
+
+.movies-table th:last-child {
+    padding-right: 22px;
+}
+
+.movie-column {
+    width: 30%;
+}
+
+.actions-column {
+    width: 100px;
+    text-align: right !important;
+}
+
+/* ---------- Linhas ---------- */
+
+.movies-table tbody tr {
+    transition: background 0.15s ease;
+}
+
+.movies-table tbody tr:hover {
+    background: #fafafa;
+}
+
+.movies-table tbody tr:not(:last-child) {
+    border-bottom: 1px solid #eeeeee;
+}
+
+.movies-table td {
+    padding: 15px 20px;
+    vertical-align: middle;
+
+    color: #555;
+    font-size: 13px;
+}
+
+.movies-table td:first-child {
+    padding-left: 22px;
+}
+
+.movies-table td:last-child {
+    padding-right: 22px;
+}
+
+/* =====================================================
+   INFORMAÇÕES DO FILME
+   ===================================================== */
+
+.movie-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.movie-poster {
+    width: 42px;
+    height: 58px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background: #ededed;
+    border-radius: 6px;
+
+    color: #777;
+    font-size: 18px;
+}
+
+.movie-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.movie-name {
+    min-width: 0;
+}
+
+.movie-name strong {
+    display: block;
+
+    color: #202020;
+    font-size: 14px;
+    font-weight: 700;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.movie-name span {
+    display: block;
+
+    margin-top: 4px;
+
+    color: #999;
+    font-size: 11px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    max-width: 230px;
+}
+
+/* ---------- Diretor ---------- */
+
+.table-main-text {
+    color: #444;
+    font-size: 13px;
+}
+
+/* ---------- Ano ---------- */
+
+.year-badge {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 5px 8px;
+
+    background: #f5f5f5;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+
+    color: #555;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* =====================================================
+   GÊNEROS
+   ===================================================== */
+
+.genre-list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.genre-tag {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 5px 8px;
+
+    background: #f3f3f3;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+
+    color: #555;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.genre-more {
+    color: #999;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* =====================================================
+   USUÁRIO
+   ===================================================== */
+
+.user-cell {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    white-space: nowrap;
+}
+
+.user-avatar {
+    width: 27px;
+    height: 27px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #171717;
+    color: #fff;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* =====================================================
+   AÇÕES
+   ===================================================== */
+
+.table-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+}
+
+.table-actions form {
+    margin: 0;
+    padding: 0;
+}
+
+.action-btn {
+    width: 32px;
+    height: 32px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #dedede;
+    border-radius: 7px;
+
+    background: #fff;
+    color: #555;
+
+    cursor: pointer;
+
+    font-size: 17px;
+    line-height: 1;
+
+    transition: 0.15s;
+}
+
+.action-btn.edit:hover {
+    background: #f2f2f2;
+    border-color: #cfcfcf;
+    color: #111;
+}
+
+.action-btn.delete {
+    color: #999;
+}
+
+.action-btn.delete:hover {
+    background: #fff2f2;
+    border-color: #e8bebe;
+    color: #b42318;
+}
+
+/* =====================================================
+   ESTADO VAZIO
+   ===================================================== */
+
+.empty-state {
+    padding: 70px 20px;
+    text-align: center;
+}
+
+.empty-icon {
+    width: 58px;
+    height: 58px;
+
+    margin: 0 auto 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f2f2f2;
+    border-radius: 14px;
+
+    font-size: 25px;
+}
+
+.empty-state h3 {
+    margin: 0 0 7px;
+    font-size: 17px;
+}
+
+.empty-state p {
+    max-width: 400px;
+    margin: 0 auto;
+    color: #999;
+    font-size: 13px;
+}
+
+.empty-state .btn {
+    margin-top: 20px;
+}
+
+/* =====================================================
+   RESPONSIVIDADE
+   ===================================================== */
+
+@media (max-width: 900px) {
+
+    .stat-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .movies-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .dashboard-header h1 {
+        font-size: 27px;
+    }
+
+    .main {
+        padding: 24px 16px;
+    }
+
+    .movies-table {
+        min-width: 850px;
+    }
+}
